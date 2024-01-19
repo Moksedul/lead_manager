@@ -1,0 +1,125 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      Estate Bridge
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  {% if user.first_name %}
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'plot-allotment' %}">LAYOUT</a>
+      </li>
+
+
+
+      {% if perms.sale.view_invoice %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            SALES
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if perms.customer.view_customer %}
+            <a class="dropdown-item" href="{% url 'customer-list' %}">CUSTOMER</a>
+            {% endif %}
+            <a class="dropdown-item" href="{% url 'invoice-list' %}">INVOICE</a>
+            <a class="dropdown-item" href="{% url 'target-list' %}">SALE TARGET</a>
+            <a class="dropdown-item" href="{% url 'sales-report' %}">REPORT</a>
+          </div>
+        </li>
+      {% endif %}
+
+      {% if perms.accounts.view_accounthead %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ACCOUNTS
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'credit-voucher-list' %}">CREDIT VOUCHER</a>
+          <a class="dropdown-item" href="{% url 'debit-voucher-list' %}">DEBIT VOUCHER</a>
+          <a class="dropdown-item" href="{% url 'transfer-list' %}">TRANSFER VOUCHER</a>
+          <a class="dropdown-item" href="{% url 'accounts' %}">ACCOUNTS</a>
+          <a class="dropdown-item" href="{% url 'ledger' %}">REPORT</a>
+          <a class="dropdown-item" href="{% url 'tally' %}">TALLY</a>
+        </div>
+      </li>
+      {% endif %}
+
+      {% if perms.collection.view_collection %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          COLLECTIONS
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'collection-list' %}">COLLECTION LIST</a>
+          <a class="dropdown-item" href="{% url 'collection-statement' %}">STATEMENT</a>
+        </div>
+      </li>
+      {% endif %}
+
+      {% if perms.lead.view_lead %}
+      <li class="nav-item">
+        <a data-count="{% url 'new-lead-count' %}" id="lead" class="nav-link" href="{% url 'lead-list' %}">LEADS<sup class="new" id="ledCount"></sup></a>
+      </li>
+      {% endif %}
+
+    </ul>
+
+    <div class="my-2 my-lg-0 ">
+      <a href="#" id="btn-modal-notify-allow" title="Turn On Notification" data-url="{% url 'notification-allow' %}"><i class="fas fa-bell" style='font-size:15px;color:white'></i></a>
+      {% if user.is_staff %}
+        <a id="btn-modal-notify" href="#"><i class='far fa-comment-dots' style="font-size:15px;color:white"></i></i></a>
+        {% include 'main/notification-modal.html' %}
+        <a  href="/admin"><i class="fa fa-cog"></i></a>
+      {% endif %}
+       <span class="text-white"> <small>Welcome</small><a href="{% url 'profile' %}">{{ user.first_name }}</a></span>
+      <a href="{% url 'logout'%}" ><button class="btn btn-sm btn-outline-primary" >Logout</button></a>
+    </div>
+  </div>
+    {% endif %}
+    </div>
+</nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
+<script>
+  $(document).ready(function(){
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 25){
+            $(".navbar").css({"background-color":"black"});
+        }
+        else{
+            $(".navbar").css({"background-color":""});
+        }
+
+    })
+})
+</script>
+
+<script id="notificationr"></script>
+
+<script>
+$("#btn-modal-notify-allow").click(function()
+	{
+		var url = $("#btn-modal-notify-allow").attr("data-url");
+		var nameId = $(this).val();
+		$.ajax({
+					url: url,
+					data: {
+					  'name': nameId
+					},
+					success: function (data) {
+					  $("#notificationr").html(data);
+					}
+			  });
+	});
+</script>

@@ -1,0 +1,9 @@
+<textarea class="col-md-12" name="message" id="body"  rows="4" placeholder="Please Type Message Here"></textarea>
+<select class="form-control col-md-12" name="user" id="user">
+    <option selected value="" >Select User</option>
+    {% for person in persons %}
+    <option value="{{person.id}}">{{ person.first_name }} {{ person.last_name }}</option>
+    {% endfor %}
+</select>
+<button class="mt-1">Send</button>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>

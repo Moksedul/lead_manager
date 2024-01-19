@@ -1,0 +1,95 @@
+{% load static %}
+<style>
+  /** Modal */
+.modal1 {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: absolute;
+  max-width: 400px;
+  margin: 0 auto;
+  background: #d9d7e6;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  width: 600px;
+  top: 200;
+  bottom: 250;
+  left: calc(50% - 300px);
+  right: calc(50% - 300px);
+  z-index: 100;
+  height: 250px;
+}
+.modal-close-btn {
+  position: absolute;
+  color: #0c0b4c;
+  right: 5px;
+  top: 8px;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+/** Overlay */
+.overlay {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/** JS */
+.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+</style>
+<div class="overlay" id="overlay-notify"></div>
+<div class="modal1" id="modal-notify">
+  <button class="modal-close-btn" id="close-btn-notify"><i class="fa fa-times" title="close"></i></button>
+    <div class="" style="padding: 5px 8px;">Send Notification </div>
+<div class="m-3">
+    <form id="notification" data-url="{% url 'load-persons' %}">
+
+        <div id="form" class="form-group"></div>
+        <p class="error"></p>
+    </form>
+</div>
+</div>
+
+<script>
+    document.getElementById('btn-modal-notify').addEventListener('click', function() {
+  document.getElementById('overlay-notify').classList.add('is-visible');
+  document.getElementById('modal-notify').classList.add('is-visible');
+});
+document.getElementById('close-btn-notify').addEventListener('click', function() {
+  document.getElementById('overlay-notify').classList.remove('is-visible');
+  document.getElementById('modal-notify').classList.remove('is-visible');
+});
+document.getElementById('overlay-notify').addEventListener('click', function() {
+  document.getElementById('overlay-notify').classList.remove('is-visible');
+  document.getElementById('modal-notify').classList.remove('is-visible');
+});
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$("#btn-modal-notify").click(function()
+	{
+		var url1 = $("#notification").attr("data-url");
+		var nameId = $(this).val();
+		$.ajax({
+					url: url1,
+					data: {
+					  'name': nameId
+					},
+					success: function (data) {
+					  $("#form").html(data);
+					}
+			  });
+	});
+</script>

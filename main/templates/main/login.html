@@ -1,0 +1,75 @@
+{% extends "main/temp.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <div class="container">
+			<header>
+			<header class="form-2">
+
+				<h1><strong>Welcome</strong> </h1>
+					<h2>LEAD MANAGER</h2>
+				<h2>Please Log in to Continue. If you don't have an Account, please Contact Admin</h2>
+
+				<div class="support-note">
+					<span class="note-ie">Sorry, only modern browsers.</span>
+				</div>
+
+			</header></header>
+
+			<section class="main">
+				<form class="form-2" method="post">
+					{% csrf_token %}
+					<h1><span class="log-in">Log in</span></h1>
+					<p>
+<!--						<label for="login"><i class="icon-user"></i>Username</label>-->
+<!--						<input type="text" name="login" placeholder="Username">-->
+                        {{ form|crispy }}
+					</p>
+<!--					<p class="float">-->
+<!--						<label for="password"><i class="icon-lock"></i>Password</label>-->
+<!--						<input type="password" name="password" placeholder="Password" class="showpassword">-->
+<!--					</p>-->
+					<div class="clearfix float-center">
+						<input type="submit" name="submit" value="Log in">
+						<div><a href="{% url 'password_reset' %}">Forgot Password?</a></div>
+					</div>
+				</form>​​
+			</section>
+
+        </div>
+		<!-- jQuery if needed -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+			    $(".showpassword").each(function(index,input) {
+			        var $input = $(input);
+			        $("<p class='opt'/>").append(
+			            $("<input type='checkbox' class='showpasswordcheckbox' id='showPassword' />").click(function() {
+			                var change = $(this).is(":checked") ? "text" : "password";
+			                var rep = $("<input placeholder='Password' type='" + change + "' />")
+			                    .attr("id", $input.attr("id"))
+			                    .attr("name", $input.attr("name"))
+			                    .attr('class', $input.attr('class'))
+			                    .val($input.val())
+			                    .insertBefore($input);
+			                $input.remove();
+			                $input = rep;
+			             })
+			        ).append($("<label for='showPassword'/>").text("Show password")).insertAfter($input.parent());
+			    });
+
+			    $('#showPassword').click(function(){
+					if($("#showPassword").is(":checked")) {
+						$('.icon-lock').addClass('icon-unlock');
+						$('.icon-unlock').removeClass('icon-lock');
+					} else {
+						$('.icon-unlock').addClass('icon-lock');
+						$('.icon-lock').removeClass('icon-unlock');
+					}
+			    });
+			});
+		</script>
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% load humanize %}
+<div class="overlay" id="overlay"></div>
+<div class="modal1" id="modal1">
+  <button class="modal-close-btn" id="close-btn"><i class="fa fa-times" title="close"></i></button>
+    <div class="form-title" style="padding: 5px 8px;">Select Printing Options </div>
+
+    <form method="GET" id="printForm" action="{% url 'lead-print' %}">
+    <div style="padding: 0px 30px; padding-top: 10px">
+        <div class="mb-2">
+        <input class="form-control" name="d_number" placeholder="type distribution No">
+        </div>
+
+        <div class="mb-2">
+        <select class="form-control" name="member">
+            {% if not leader %}
+                <option selected value="{{ user.id }}">{{user.first_name}} {{user.last_name}}</option>
+            {% else %}
+                <option selected>Select Member</option>
+            {% endif %}
+          {% for member in members %}
+				<option value="{{ member.id }}">{{ member.first_name }} {{ member.last_name }}</option>
+            {% endfor %}
+        </select>
+        </div>
+
+    <fieldset>
+    <h6>Print Description</h6>
+      <div>
+        <span><input type="checkbox" name="description" value="yes" id="description">
+          <label for="description">Yes</label></span>
+      </div>
+    </fieldset>
+
+    <button  type="submit" class="btn btn-sm btn-info">Ok</button>
+    </div>
+
+    </form>
+</div>

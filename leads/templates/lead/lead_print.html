@@ -1,0 +1,51 @@
+{% load static %}
+{% load humanize %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{tittle}}-{{dn_no|ordinal}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'lead/style-lead-print.css' %}">
+
+</head>
+<body>
+<table class="center">
+    <thead>
+    <tr>
+        <th colspan="{% if description %}7{% else %}6{% endif %}">
+            {{r_user.first_name}} {{r_user.last_name}}-{{dn_no|ordinal}}
+        </th>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Interest</th>
+        {% if description %}<th>Query</th>{% endif %}
+        <th>Status</th>
+        <th>Remarks</th>
+    </tr>
+    </thead>
+
+    {% for lead in leads %}
+        <tr>
+            <td>{{ lead.full_name }}</td>
+            <td>{{ lead.phone_number }}</td>
+            <td>{{ lead.email }}</td>
+            <td>{{ lead.interested_in }}</td>
+            {% if description %}<td>{{lead.descriptions}}</td>{% endif %}
+            <td>{{ lead.status }}</td>
+            <td width="200"></td>
+        </tr>
+    {% endfor %}
+
+</table>
+{% include 'main/print_button.html' %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$('#print').click(function(){
+    $('#print').css('display', 'none');
+   window.print();
+
+});
+</script>
+</body>

@@ -1,0 +1,43 @@
+{% extends "main/temp.html" %}
+{% load crispy_forms_tags %}
+
+<style>
+.textarea.form-control {
+    height: auto !important;
+}
+</style>
+{% block content %}
+    <div class="container card card-body mt-3" id="element3">
+        <h5 class="text-center p-2 mt-3 rounded" style="background-color: grey; color: white">{{form_name}}</h5>
+        <form method="post" class="p-2">
+            {% csrf_token %}
+            <div class="form-row ">
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.full_name|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.phone_number|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4 mb-0">
+                    {{ form.email|as_crispy_field }}
+                </div>
+
+                <div class="form-group col-md-3 mb-0">
+                    {{ form.interested_in|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-9 mb-0">
+                    {{ form.descriptions|as_crispy_field }}
+                </div>
+            </div>
+                <button class="btn btn-outline-info mt-1" id="save" type="submit">{{button_name}}</button>
+        </form>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$("#save").click(function(){
+    $("#save").html("Please Wait...");
+});
+</script>
+
+{% endblock content %}

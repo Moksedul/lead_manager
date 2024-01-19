@@ -3,3 +3,4 @@ Django
 sqlparse
 typing_extensions
 django-import-export
+pywebpush

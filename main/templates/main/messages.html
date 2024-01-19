@@ -1,0 +1,80 @@
+{% if messages %}
+{% load techAlongextra %}
+<style>
+  /** Modal */
+.modal1 {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: absolute;
+  max-width: 400px;
+  margin: 0 auto;
+  background: #d9d7e6;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  width: 600px;
+  top: 200;
+  bottom: 250;
+  left: calc(50% - 300px);
+  right: calc(50% - 300px);
+  z-index: 100;
+  height: 250px;
+}
+.message-close-btn {
+  position: absolute;
+  color: #0c0b4c;
+  right: 5px;
+  top: 8px;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+/** Overlay */
+.overlay {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/** JS */
+.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+</style>
+<div class="overlay" id="overlay-message"></div>
+<div class="modal1" id="modal-message">
+  <button class="message-close-btn" id="close-btn-message"><i class="fa fa-times" title="close"></i></button>
+    <div class="form-title" style="padding: 5px 8px;">{% for message in messages %}{{ message.tags }}{% endfor %}</div>
+<div class="m-3">
+   <div class="messages">
+       {% for message in messages %}
+       {{ message|safe }}
+       {% endfor %}
+   </div>
+</div>
+</div>
+
+<script>
+
+  document.getElementById('overlay-message').classList.add('is-visible');
+  document.getElementById('modal-message').classList.add('is-visible');
+
+document.getElementById('close-btn-message').addEventListener('click', function() {
+  document.getElementById('overlay-message').classList.remove('is-visible');
+  document.getElementById('modal-message').classList.remove('is-visible');
+});
+document.getElementById('overlay-message').addEventListener('click', function() {
+  document.getElementById('overlay-message').classList.remove('is-visible');
+  document.getElementById('modal-message').classList.remove('is-visible');
+});
+</script>
+{% endif %}

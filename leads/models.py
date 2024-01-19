@@ -1,7 +1,6 @@
 import re
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import Q
 from django.urls import reverse
 from django.utils.timezone import now
 
@@ -25,12 +24,12 @@ CONTACT = [
 
 
 def interest_choices():
-    from setting.models import Project
+    from settings.models import Project
     interests = [
         ('Land', 'Land'),
         ('Apartment', 'Apartment'),
     ]
-    projects = Project.objects.filter(Q(project_category='Land') | Q(project_category='Apartment'))
+    projects = Project.objects.all()
     for project in projects:
         project_option = (project.project_name, project.project_name)
         interests.append(project_option)

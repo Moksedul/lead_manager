@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+{% block form %}
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4">
+            <div class="form-title">Delete {{ object_name }}</div>
+                <div class="card card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h6>Are you sure want to Delete This {{ object_name }}?</h6>
+                    <h6>"{{ description }}"</h6>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-outline-danger" type="submit">Yes</button>
+                        <a class="btn btn-sm btn-outline-info" href="{{ cancel_url }}">No</a>
+                    </div>
+                </form>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+{% endblock form %}

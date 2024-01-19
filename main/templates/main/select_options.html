@@ -1,0 +1,5 @@
+
+<option selected value="{{default_text.id}}">{{default_text}}</option>
+{% for object in objects %}
+<option value="{{ object.pk }}">{{ object }}</option>
+{% endfor %}
