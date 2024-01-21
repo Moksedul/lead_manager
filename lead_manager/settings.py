@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'webpush',
     'import_export',
     "crispy_forms",
-    "crispy_bootstrap5",
+    "crispy_bootstrap4",
 
     # apps
     'leads',
@@ -152,8 +152,8 @@ LOGIN_REDIRECT_URL = 'main-home'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
