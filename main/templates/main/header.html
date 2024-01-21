@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
     <a class="navbar-brand" href="/">
-      Estate Bridge
+      Lead Manager
     </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -13,55 +13,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">HOME</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'plot-allotment' %}">LAYOUT</a>
-      </li>
 
-
-
-      {% if perms.sale.view_invoice %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            SALES
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% if perms.customer.view_customer %}
-            <a class="dropdown-item" href="{% url 'customer-list' %}">CUSTOMER</a>
-            {% endif %}
-            <a class="dropdown-item" href="{% url 'invoice-list' %}">INVOICE</a>
-            <a class="dropdown-item" href="{% url 'target-list' %}">SALE TARGET</a>
-            <a class="dropdown-item" href="{% url 'sales-report' %}">REPORT</a>
-          </div>
-        </li>
-      {% endif %}
-
-      {% if perms.accounts.view_accounthead %}
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          ACCOUNTS
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'credit-voucher-list' %}">CREDIT VOUCHER</a>
-          <a class="dropdown-item" href="{% url 'debit-voucher-list' %}">DEBIT VOUCHER</a>
-          <a class="dropdown-item" href="{% url 'transfer-list' %}">TRANSFER VOUCHER</a>
-          <a class="dropdown-item" href="{% url 'accounts' %}">ACCOUNTS</a>
-          <a class="dropdown-item" href="{% url 'ledger' %}">REPORT</a>
-          <a class="dropdown-item" href="{% url 'tally' %}">TALLY</a>
-        </div>
-      </li>
-      {% endif %}
-
-      {% if perms.collection.view_collection %}
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          COLLECTIONS
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'collection-list' %}">COLLECTION LIST</a>
-          <a class="dropdown-item" href="{% url 'collection-statement' %}">STATEMENT</a>
-        </div>
-      </li>
-      {% endif %}
 
       {% if perms.lead.view_lead %}
       <li class="nav-item">

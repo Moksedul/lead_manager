@@ -14,10 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
+from lead_manager import settings
 from main.views import send_push
 from django.contrib.auth import views as auth_views
+from django.contrib import admin
+admin.site.site_header = 'Lead Manager Administration'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +34,5 @@ urlpatterns = [
     path('send_push', send_push),
     path('webpush/', include('webpush.urls')),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,179 @@
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#" onclick="setSidebarState('on');">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">Lead Manager</a>
+        <div id="close-sidebar" onclick="setSidebarState('off');">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="/media/default.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">{{user.first_name}}
+            <strong>{{user.last_name}}</strong>
+          </span>
+          <span class="user-role">
+            {% if user.is_staff and user.is_superuser%}
+            Admin
+            {% elif user.is_staff %}
+            Staff
+            {% else %}
+            Seller
+            {% endif %}
+
+          </span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>
+              {% if user.is_active %}
+                Active
+              {% else %}
+                Inactive
+              {% endif %}
+            </span>
+          </span>
+        </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-search">
+        <div>
+          <div class="input-group">
+            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sidebar-search  -->
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="{% url 'main-home' %}">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+            <div class="sidebar-submenu">
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-shopping-cart"></i>
+              <span>Sales</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                {% if perms.sale.add_order %}
+                <li>
+                  <a href="#">New Order</a>
+                </li>
+                {% endif %}
+                {% if perms.sale.view_order %}
+                <li>
+                  <a href="#">Orders List</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </li>
+
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-money" aria-hidden="true"></i>
+              <span>Finance</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                {% if perms.finance.view_investment %}
+                <li>
+                  <a href="#">Investments</a>
+                </li>
+                {% endif %}
+                {% if perms.finance.view_expanse %}
+                <li>
+                  <a href="#">Expanses</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </li>
+
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-shopping-cart"></i>
+              <span>Purchase</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                {% if perms.purchase.add_purchase %}
+                <li>
+                  <a href="#">New Purchase</a>
+                </li>
+                {% endif %}
+                {% if perms.purchase.view_purchase %}
+                <li>
+                  <a href="#">Purchase List</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="far fa-gem"></i>
+              <span>Stock</span>
+              <span class="badge badge-pill badge-danger">{{ new_stock }}</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                {% if perms.setting.view_product %}
+                <li>
+                  <a href="#">Products</a>
+                </li>
+                {% endif %}
+                {% if perms.stock.view_stockentry %}
+                <li>
+                  <a href="#">
+                    Stock Entry
+                  </a>
+                </li>
+                 {% endif %}
+                {% if perms.stock.view_stockinventory %}
+                <li>
+                  <a href="#">
+                    Inventory (History)
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+      <a href="/admin/">
+        <i class="fa fa-cog"></i>
+      </a>
+      <form id="logout-form" method="post" action="/admin/logout/">
+                    {% csrf_token %}
+                    <button class="btn btn-sm" type="submit"><i class="fa fa-power-off"></i></button>
+      </form>
+    </div>
+  </nav>
+  <!-- sidebar-wrapper  -->
+
+  

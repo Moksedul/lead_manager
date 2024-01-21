@@ -56,14 +56,14 @@ form {
 {% endblock %}
 
 {% block content %}
-{% if perms.lead.view_lead %}
+{% if perms.leads.view_lead %}
 <form method="GET" id="search" data-menu-name="searchMenuStateLeads">
 <div class="form-row">
     <div class="col-md-2">
       <div class="d-flex justify-content-end float-left">
 
         <a href="lead_list"><button type="button" class="btn-info btn-sm">&#x21BB;</button></a>
-		{% if leader or admin or perms.lead.add_lead %}
+		{% if leader or admin or perms.leads.add_lead %}
 		<a href="{% url 'new-lead' %}"><button type="button" class="btn-info btn-sm">+</button></a>
 		{% endif %}
 

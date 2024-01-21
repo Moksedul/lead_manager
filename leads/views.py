@@ -10,6 +10,8 @@ from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView
 from core.notifications import send_notification
+from core.utils import get_team_members
+from user.models import Team, Profile
 
 from .forms import *
 from .models import Lead, LEAD_STATUS_T, CONTACT_T

@@ -23,6 +23,15 @@ def home(request):
     return render(request, 'main/home.html', context)
 
 
+@login_required()
+def person_load(request):
+    persons = User.objects.filter(is_superuser=False)
+    context = {
+        'persons': persons
+    }
+    return render(request, 'main/notification_form.html', context=context)
+
+
 @require_POST
 @csrf_exempt
 def send_push(request):

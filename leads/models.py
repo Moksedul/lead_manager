@@ -66,4 +66,4 @@ class Lead(models.Model):
 
     @staticmethod
     def get_absolute_url():
-        return reverse('leads-list')
+        return reverse('lead-list')

@@ -1,4 +1,57 @@
 {% load humanize %}
+
+<style>
+  /** Modal */
+.modal1 {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: absolute;
+  max-width: 400px;
+  margin: 0 auto;
+  background: #d9d7e6;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  width: 600px;
+  top: 200;
+  bottom: 250;
+  left: calc(50% - 300px);
+  right: calc(50% - 300px);
+  z-index: 100;
+  height: 250px;
+}
+.modal-close-btn {
+  position: absolute;
+  color: #0c0b4c;
+  right: 5px;
+  top: 8px;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+/** Overlay */
+.overlay {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+/** JS */
+.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+</style>
+
 <div class="overlay" id="overlay"></div>
 <div class="modal1" id="modal1">
   <button class="modal-close-btn" id="close-btn"><i class="fa fa-times" title="close"></i></button>
@@ -36,3 +89,18 @@
 
     </form>
 </div>
+
+<script>
+  document.getElementById('btn-modal').addEventListener('click', function() {
+  document.getElementById('overlay').classList.add('is-visible');
+  document.getElementById('modal1').classList.add('is-visible');
+});
+document.getElementById('close-btn').addEventListener('click', function() {
+  document.getElementById('overlay').classList.remove('is-visible');
+  document.getElementById('modal1').classList.remove('is-visible');
+});
+document.getElementById('overlay').addEventListener('click', function() {
+  document.getElementById('overlay').classList.remove('is-visible');
+  document.getElementById('modal1').classList.remove('is-visible');
+});
+</script>
