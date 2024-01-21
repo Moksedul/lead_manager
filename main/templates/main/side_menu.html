@@ -68,97 +68,32 @@
             </div>
           </li>
           <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-shopping-cart"></i>
-              <span>Sales</span>
+            <a href="{% url 'new-lead' %}">
+              <i class="fa-solid fa-person-rays"></i>
+              <span>New Lead</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                {% if perms.sale.add_order %}
-                <li>
-                  <a href="#">New Order</a>
-                </li>
-                {% endif %}
-                {% if perms.sale.view_order %}
-                <li>
-                  <a href="#">Orders List</a>
-                </li>
-                {% endif %}
-              </ul>
-            </div>
+          </li>
+
+          <li class="sidebar-dropdown">
+            <a href="{% url 'lead-list' %}">
+              <i class="fa-solid fa-people-group"></i>
+              <span>Lead List</span>
+            </a>
           </li>
 
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="fa fa-money" aria-hidden="true"></i>
-              <span>Finance</span>
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Leads</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                {% if perms.finance.view_investment %}
-                <li>
-                  <a href="#">Investments</a>
-                </li>
-                {% endif %}
-                {% if perms.finance.view_expanse %}
-                <li>
-                  <a href="#">Expanses</a>
-                </li>
-                {% endif %}
-              </ul>
-            </div>
-          </li>
-
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-shopping-cart"></i>
-              <span>Purchase</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                {% if perms.purchase.add_purchase %}
-                <li>
-                  <a href="#">New Purchase</a>
-                </li>
-                {% endif %}
-                {% if perms.purchase.view_purchase %}
-                <li>
-                  <a href="#">Purchase List</a>
-                </li>
-                {% endif %}
-              </ul>
-            </div>
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="far fa-gem"></i>
-              <span>Stock</span>
+              <i class="fa-solid fa-file-export"></i>
+              <span>Export Leads</span>
               <span class="badge badge-pill badge-danger">{{ new_stock }}</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                {% if perms.setting.view_product %}
-                <li>
-                  <a href="#">Products</a>
-                </li>
-                {% endif %}
-                {% if perms.stock.view_stockentry %}
-                <li>
-                  <a href="#">
-                    Stock Entry
-                  </a>
-                </li>
-                 {% endif %}
-                {% if perms.stock.view_stockinventory %}
-                <li>
-                  <a href="#">
-                    Inventory (History)
-                  </a>
-                </li>
-                {% endif %}
-              </ul>
-            </div>
-          </li>
+            <
         </ul>
       </div>
       <!-- sidebar-menu  -->
