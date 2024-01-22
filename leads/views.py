@@ -343,3 +343,5 @@ def thank_you_page(request):
         'message': message
     }
     return render(request, 'lead/thank_you_page.html', context)
+
+

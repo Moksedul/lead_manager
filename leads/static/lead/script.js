@@ -1,11 +1,4 @@
-//for disable edit buttons
-function alertEdit() {
-  alert("Approved Invoice Can not be Edited");
-}
-function alertStatus() {
-  alert("Already Approved !!!");
-}
-//for disable edit buttons
+
 
 
 //for enable search in drop down selection

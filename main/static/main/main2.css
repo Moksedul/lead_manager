@@ -61,9 +61,10 @@ body {
 
 /*----------------page-wrapper----------------*/
 
+/*
 .page-wrapper {
   height: 100vh;
-}
+} */
 
 .page-wrapper .theme {
   width: 40px;
@@ -356,12 +357,12 @@ body {
   width: 100%;
   padding-left: 0px;
   padding-top: 0;
-  padding-bottom: 35px;
 }
 
+/*
 .page-wrapper .page-content > div {
   padding: 10px 20px;
-}
+} */
 
 .page-wrapper .page-content {
   overflow-x: hidden;

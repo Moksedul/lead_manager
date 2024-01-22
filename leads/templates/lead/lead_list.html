@@ -315,13 +315,12 @@ form {
 <div class="text-center" style="color: white;"> Sorry {{user.first_name}}, You Are Not Allowed Here!! </div>
 {% endif %}
 
+
+
+{% endblock content %}
+
+{% block bottom_js %}
 <script type="text/javascript" src="{% static 'lead/script.js' %}"></script>
-
-
-
-<!--for auto complete function-->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(function () {
         $("#lead_search").autocomplete({
@@ -337,6 +336,4 @@ form {
 <!--this file also includes responsive container height-calculator -->
 <script type="text/javascript" src="{% static 'main/js/infinite.scrolling.js' %}"></script>
 <!--for infinite scrolling-->
-
-
-{% endblock content %}
+{% endblock %}
