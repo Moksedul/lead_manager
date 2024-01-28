@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.views.i18n import JavaScriptCatalog
 
 from lead_manager import settings
 from main.views import send_push
@@ -33,6 +34,7 @@ urlpatterns = [
     path('', include('user.urls')),
     path('send_push', send_push),
     path('webpush/', include('webpush.urls')),
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

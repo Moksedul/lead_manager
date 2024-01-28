@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 from core.notifications import send_notification
 from core.utils import get_team_members
 from user.models import Team, Profile
@@ -246,6 +246,19 @@ class LeadList(LoginRequiredMixin, ListView):
             leads = leads.filter(distribution_no=distribution_contains)
 
         return leads
+
+
+class LeadDelete(LoginRequiredMixin, DeleteView):
+    model = Lead
+    template_name = 'main/confirm_delete.html'
+    success_url = '/lead_list'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_name'] = 'Lead'
+        context['tittle'] = 'Lead Delete'
+        context['cancel_url'] = '/lead_list'
+        return context
 
 
 @login_required()

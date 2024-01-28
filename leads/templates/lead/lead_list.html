@@ -159,6 +159,7 @@ form {
 					{% elif permission and user.is_staff %}
 						<th>Assigned Member</th>
 						<th>Assigned To</th>
+						<th>Controls<th>
 					{% endif %}
 
 				</tr>
@@ -298,6 +299,7 @@ form {
 						{% elif permission and user.is_staff %}
 							<td>{{ lead.assigned_member.first_name }} {{ lead.assigned_member.last_name }}</td>
 							<td>{{ lead.assigned_to.first_name }} {{ lead.assigned_to.last_name }}</td>
+							<td><a href="{% url 'delete-lead'  lead.id %}">X</a></td>
 
 						{% endif %}
 
