@@ -1,4 +1,6 @@
 import json
+from datetime import date, timedelta
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -8,17 +10,20 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from webpush import send_user_notification
 
+from leads.models import Lead
+
 
 @login_required()
 def home(request):
-
+    leads = Lead.objects.filter(uploaded_time__range=[(date.today() - timedelta(days=30)), date.today()]).order_by('-id')[:15]
     webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
     vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
     user = request.user
     context = {
         'tittle': 'Lead Manager | Home',
         user: user,
-        'vapid_key': vapid_key
+        'vapid_key': vapid_key,
+        'leads': leads
     }
     return render(request, 'main/home.html', context)
 
