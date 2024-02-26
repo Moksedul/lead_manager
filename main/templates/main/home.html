@@ -91,18 +91,12 @@
      <div class="card">
               <div class="card-body">
                   <div class="text-center form-title">Lead Conversion Progress (Team)</div>
+                {% for progress in team_progress %}
                   <div class="p-4">
-                    <label for="file">Team-A:</label>
-                    <progress id="file" value="50" max="100">50%</progress>50%
+                    <label for="file">{{progress.team}}</label>
+                    <progress id="file" value="{{progress.progress}}" max="100">{{progress.progress}}%</progress>{{progress.progress}}%
                   </div>
-                 <div class="p-4">
-                    <label for="file">Team-B:</label>
-                    <progress id="file" value="32" max="100">32%</progress>32%
-                  </div>
-                 <div class="p-4">
-                    <label for="file">Team-C:</label>
-                    <progress id="file" value="80" max="100">80%</progress>80%
-                  </div>
+                {% endfor %}
                 </div>
      </div>
     </div>
@@ -111,7 +105,7 @@
             <div class="card-body">
                 <div class="text-center form-title">Overall Progress</div>
                 <div style="margin:auto; width:200px;">
-                  <div class="circular-progress" data-inner-circle-color="white" data-percentage="70" data-progress-color="blue" data-bg-color="violet">
+                  <div class="circular-progress" data-inner-circle-color="white" data-percentage="{{overall_progress}}" data-progress-color="blue" data-bg-color="violet">
                       <div class="inner-circle">
 
                       </div>
