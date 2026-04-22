@@ -177,13 +177,13 @@ form {
 							<a class="" href="{% url 'lead-edit' lead.id %}"><i class="fa fa-edit"></i></a>
 						</td>
 					{% if lead.contacted == 'No' %}
-						<td class="" title="{{lead.full_name}}">{{ lead.full_name|truncatechars:12 }}
+						<td class="" title="{{lead.full_name}}">{{ lead.full_name|truncatechars:10 }}
 							<sup class="new"><small>NEW</small></sup>
 						</td>
 					{% else %}
 						<td title="{{lead.full_name}}">
 
-							{{ lead.full_name|truncatechars:12 }}
+							{{ lead.full_name|truncatechars:10 }}
 
 							{% if lead.status == 'Bad' %}
 								<sup class="new">
